@@ -1,0 +1,5 @@
+<dataset>
+    <flash_card id="1" term="XML" definition="Extensible Markup Language"/>
+    <flash_card id="2" term="XSL" definition="EXtensible Stylesheet Language"/>
+    <flash_card id="3" term="XSLT" definition="XSL Transformations"/>
+</dataset>
