@@ -10,19 +10,31 @@
 </head>
 <body class="index">
 <div class="card">
-    <ul>
-        <li th:each="card : ${flashCards}">
-            <div th:text="|Term: ${card.term}|"></div>
-            <div th:text="|Definition: ${card.definition}|"></div>
-        </li>
-    </ul>
     <form action="" method="post" th:object="${flashCard}">
-        <label for="term">Term:</label>
-        <input type="text" value="" th:field="*{term}" id="term"/>
-        <label for="definition">Definition:</label>
-        <input type="text" value="" th:field="*{definition}" id="definition"/>
+        <div th:classappend="${#fields.hasErrors('term')}? 'error' : ''">
+            <label for="term">Term:</label>
+            <input type="text" value="" th:field="*{term}" id="term"/>
+            <div class="error-message" th:if="${#fields.hasErrors('term')}"
+                 th:errors="*{term}"></div>
+        </div>
+
+        <div th:classappend="${#fields.hasErrors('definition')}? 'error' : ''">
+            <label for="definition">Definition:</label>
+            <input type="text" value="" th:field="*{definition}" id="definition"/>
+            <div class="error-message" th:if="${#fields.hasErrors('definition')}"
+                 th:errors="*{definition}"></div>
+        </div>
+
         <input type="submit" value="Add flash card"/>
     </form>
+    <ul>
+        <div id="terms">
+            <li th:each="card : ${flashCards}">
+                <div th:text="|Term: ${card.term}|"></div>
+                <div th:text="|Definition: ${card.definition}|"></div>
+            </li>
+        </div>
+    </ul>
 </div>
 </body>
 </html>

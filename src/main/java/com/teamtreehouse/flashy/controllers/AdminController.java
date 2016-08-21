@@ -22,7 +22,7 @@ public class AdminController {
   }
 
   @RequestMapping("/admin")
-  public String admin(FlashCard flashCard, Model model) {
+  public String admin(Model model) {
     if (!model.containsAttribute("flashCard")) {
       model.addAttribute("flashCard", new FlashCard());
     }
@@ -34,6 +34,7 @@ public class AdminController {
   public String addFlashCard(@Valid FlashCard flashCard, BindingResult result,
                              RedirectAttributes redirectAttributes) {
     if (result.hasErrors()) {
+      redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.flashCard", result);
       redirectAttributes.addFlashAttribute("flashCard", flashCard);
     } else {
       flashCardService.save(flashCard);
