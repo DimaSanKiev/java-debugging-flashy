@@ -70,4 +70,15 @@ public class FlashCardServiceImpl implements FlashCardService {
             .limit(amount)
             .collect(toList());
   }
+
+  @Override
+  public void save(FlashCard flashCard) {
+    flashCardRepository.save(flashCard);
+  }
+
+  @Override
+  public List<FlashCard> findAll() {
+    return flashCardRepository.findAll();
+  }
+
 }
